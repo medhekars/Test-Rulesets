@@ -4,7 +4,7 @@ const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
 const createRuleset = async () => {
   try {
-    const { data: repo } = await octokit.repos.get({ owner: 'my-org', repo: 'my-repo' });
+    const { data: repo } = await octokit.repos.get({ owner: 'medhekars', repo: 'Test-Rulesets' });
 
     const ruleset = {
       name: 'My Ruleset',
