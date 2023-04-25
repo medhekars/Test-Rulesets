@@ -23,7 +23,7 @@ const createRuleset = async () => {
       ]
     };
 
-    const response = await octokit.request('POST /repos/:owner/:repo/code-scanning/sarif-rulesets', {
+    const response = await octokit.request('POST /repos/:owner/:repo/rulesets', {
       owner: 'medhekars',
       repo: 'Test-Rulesets',
       data: ruleset
