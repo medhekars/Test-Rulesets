@@ -1,0 +1,50 @@
+name: Create Rulesets
+on:
+  workflow_dispatch:
+jobs:
+  create_rulesets:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Install dependencies
+      run: npm install
+    - name: Create Rulesets
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        const { Octokit } = require("@octokit/rest");
+        const octokit = new Octokit({
+          auth: process.env.GITHUB_TOKEN
+        });
+        const ruleset_name = "my_ruleset";
+        const ruleset_body = {
+          name: ruleset_name,
+          description: "My custom ruleset",
+          rules: [
+            {
+              name: "Rule 1",
+              conditions: [
+                {
+                  attribute: "author_association",
+                  operator: "eq",
+                  value: "OWNER"
+                }
+              ],
+              actions: [
+                {
+                  type: "label",
+                  value: "Important"
+                }
+              ]
+            }
+          ]
+        };
+        const owner = "medhekars";
+        const repo = "Test-Rulesets";
+        const result = await octokit.request('POST /repos/{owner}/{repo}/code-scanning/rulesets', {
+          owner: owner,
+          repo: repo,
+          data: ruleset_body
+        });
+        console.log(result);
