@@ -1,7 +1,6 @@
 name: Create Rulesets
 on:
-  push:
-    branches: [ main ]
+  workflow_dispatch:
 jobs:
   create_rulesets:
     runs-on: ubuntu-latest
