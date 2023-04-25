@@ -1,9 +1,7 @@
 name: Create Ruleset via javaScript
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   create_ruleset:
