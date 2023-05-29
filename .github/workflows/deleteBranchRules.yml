@@ -1,0 +1,18 @@
+name: Delete Branch Protection Rules
+on:
+  workflow_dispatch:
+jobs:
+  delete_branch_rules:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Install dependencies
+      run: npm install
+    - name: NPM CI
+      run: npm ci --omit-dev
+    - name: Create Rulesets
+      run: node --loader ts-node/esm --experimental-specifier-resolution=node ./src/deleteRules.ts
+      env:
+        APP_ID: ${{ secrets.APP_ID }}
+        APP_KEY: ${{ secrets.APP_KEY }}
