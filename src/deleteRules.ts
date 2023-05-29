@@ -48,7 +48,7 @@ async function deleteBranchProtection(owner: string, repo: string, branch: strin
 
 
 const owner = 'medhekars';
-const repo = 'TestRulesets';
+const repo = 'Test-Rulesets';
 const branch = 'main';
 
 deleteBranchProtection(owner, repo, branch)
