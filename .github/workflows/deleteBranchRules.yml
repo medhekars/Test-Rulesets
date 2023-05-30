@@ -11,7 +11,7 @@ jobs:
       run: npm install
     - name: NPM CI
       run: npm ci --omit-dev
-    - name: Create Rulesets
+    - name: Delete Rules
       run: node --loader ts-node/esm --experimental-specifier-resolution=node ./src/deleteRules.ts
       env:
         APP_ID: ${{ secrets.APP_ID }}

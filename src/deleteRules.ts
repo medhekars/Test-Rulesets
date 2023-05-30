@@ -9,7 +9,7 @@ const INSTALLATION_ID = '38026827';
 const auth = createAppAuth({
   appId: APP_ID,
   privateKey: PRIVATE_KEY,
-  installationId: parseInt(INSTALLATION_ID, 10),
+  installationId: parseInt(INSTALLATION_ID, 8),
 });
 
 const authOptions = {
@@ -27,7 +27,7 @@ const appOctokit = new Octokit({
 async function deleteBranchProtection(owner: string, repo: string, branch: string): Promise<void> {
   const installationAuth = await appOctokit.auth({
     ...authOptions,
-    installationId: parseInt(INSTALLATION_ID, 10),
+    installationId: parseInt(INSTALLATION_ID, 8),
   });
 
   const installationOctokit = new OctokitClient({
